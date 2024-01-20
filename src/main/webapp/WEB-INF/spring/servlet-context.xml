@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:mvc="http://www.springframework.org/schema/mvc"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:aop="http://www.springframework.org/schema/aop"
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc
+             https://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd"
+>
+    <annotation-driven />
+    <mvc:annotation-driven/>
+    <!-- Handles HTTP GET requests for /resources/ by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+    <resources mapping="/resources/" location="/resources/" />
+
+<!--JSP 뷰를 찾기 위한 내부 지원 뷰 리졸버 설정-->
+    <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <beans:property name="prefix" value="/WEB-INF/views/" />
+        <beans:property name="suffix" value=".jsp" />
+        <beans:property name="order" value="1"/>
+    </beans:bean>
+
+<!--지정된 패키지에서 Spring의 컴포넌트를 찾아서 빈으로 등록하도록 하는 설정-->
+    <context:component-scan base-package="com.yi.spring.*"/>
+<!--    <context:component-scan base-package="com.yi.spring.mappers"/>-->
+    <context:component-scan base-package="com.yi.spring.vo"/>
+    <context:component-scan base-package="com.yi.spring.service"/>
+<!--AOP자동 프록시 설정-->
+    <aop:aspectj-autoproxy/>
+
+
+<!-- 이 파일은 Spring MVC 웹 어플리케이션을 설정하기 위한 다양한 구성요소 포함. 주로 뷰 리졸버, 정적 리소스 핸들링,-->
+<!-- 컴포넌트 스캔, AOP설정 등이 정의되어 있음-->
+
+
+    <!--    <beans:import resource="classpath:aop-config.xml"/>-->
+
+
+<!-- 이거 추가함. 1/17-->
+
+<!--    <beans:bean id="dataSource"-->
+<!--                class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+<!--        <beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></beans:property>-->
+<!--        <beans:property name="url"-->
+<!--                        value="jdbc:mysql://localhost:3306/member?useSSL=false&amp;serverTimezone=UTC">-->
+<!--        </beans:property>-->
+<!--        <beans:property name="username" value="root"></beans:property>-->
+<!--        <beans:property name="password" value="107duseo!"></beans:property>-->
+<!--    </beans:bean>-->
+
+<!--    <beans:bean id="sqlSessionFactory"-->
+<!--                class="org.mybatis.spring.SqlSessionFactoryBean">-->
+<!--        <beans:property name="dataSource" ref="dataSource" />-->
+<!--        <beans:property name="configLocation"-->
+<!--                        value="classpath:/mybatis-config.xml" /> &lt;!&ndash; 이거는 환경설정 파일 &ndash;&gt;-->
+<!--        <beans:property name="mapperLocations"-->
+<!--                        value="classpath:/mappers/*/Mapper.xml" /> &lt;!&ndash; sql 파일? 분리? 몰?루 &ndash;&gt;-->
+<!--    </beans:bean>-->
+<!--    <beans:bean id="sqlSession"-->
+<!--                class="org.mybatis.spring.SqlSessionTemplate">-->
+<!--        <beans:constructor-arg ref="sqlSessionFactory" />-->
+<!--    </beans:bean>-->
+
+
+
+</beans:beans>

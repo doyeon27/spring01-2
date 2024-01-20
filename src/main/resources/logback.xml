@@ -1,0 +1,3 @@
+<logger name="org.springframework.web.servlet.view.InternalResourceView">
+    <level value="ON" />
+</logger>
