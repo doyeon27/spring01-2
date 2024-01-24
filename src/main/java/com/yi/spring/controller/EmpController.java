@@ -36,7 +36,11 @@ public class EmpController {
 //        for (int i = 0; i < employeeList.size(); i++){
 //            System.out.println(employeeList.get(i).getDept());
 //        }
+
+        // list 라고 이름을 줘서 이거를 통해 데이터를 꺼낼수 있음
+        // model 은 뷰로 데이터를 전달하는 용도로 사용되는 객체
         model.addAttribute("list", employeeList);
+        System.out.println(employeeList);
 
         return "/emp/emp_list";
     }
@@ -44,14 +48,12 @@ public class EmpController {
     @GetMapping("/empAdd")
     public String empAddForm(EmployeeVO vo, Model model) throws Exception{
 
+
         return "emp/emp_listForm";
     }
 
     @PostMapping("/empAdd")
     public String empAdd(EmployeeVO vo, Model model) throws Exception{
-        System.out.println("111->" + vo.getEmpCode());
-        System.out.println(vo.getEmpName());
-        System.out.println(vo.getEmpPwd());
         employeeService.empAdd(vo);
 
         return "redirect:/emp/emplist";
@@ -71,7 +73,6 @@ public class EmpController {
                          @RequestParam("deptNo") String deptNo,
                          Model model) throws Exception{
 
-        System.out.println("emp 수정 테스트");
         EmployeeVO vo = new EmployeeVO();
 
         vo.setEmpCode(empCode);
@@ -91,7 +92,6 @@ public class EmpController {
 
     @PostMapping("/emp/empDel")
     public String empDel(@RequestParam("empName") String empName, Model model) throws Exception{
-        System.out.println("삭제??");
         EmployeeVO vo = new EmployeeVO();
 
         vo.setEmpName(empName);
@@ -100,6 +100,22 @@ public class EmpController {
 
         return "redirect:/emp/emplist";
     }
+
+//    EmployeeVO vo = new EmployeeVO();:
+//    EmployeeVO 클래스의 객체를 생성합니다.
+//    이 객체는 EmployeeVO 클래스의 인스턴스로, 직원 정보를 담기 위한 용도로 사용됩니다.
+//    Java에서 객체는 클래스의 인스턴스이며,
+//    객체를 생성하는 것은 해당 클래스의 인스턴스를 메모리에 할당하고, 그 객체를 조작할 수 있도록 하는 것입니다.
+//            vo.setEmpName(empName);:
+//
+//    vo 객체의 setEmpName 메소드를 호출하여 해당 객체의 상태(멤버 변수)를 변경합니다.
+//    setEmpName 메소드는 주로 직원의 이름을 설정하는 메소드로, 이를 통해 vo 객체에 직원의 이름 정보를 설정합니다.
+//            employeeService.empDel(vo);:
+//
+//    employeeService 객체의 empDel 메소드를 호출합니다. 이때, vo 객체가 전달됩니다.
+//    이 메소드는 주로 vo 객체에 담긴 정보를 기반으로 직원을 삭제하는 서비스를 수행합니다.
+//    OOP의 다형성을 활용하여 메소드에게 EmployeeVO 객체를 전달하면,
+//    해당 객체가 어떤 클래스의 인스턴스인지에 따라 적절한 동작을 수행하게 됩니다.
 
 
 

@@ -4,13 +4,6 @@
 <!--여기 부터 설정-->
 <mapper namespace="com.yi.spring.mappers.EmployeeMapper">
 
-
-    <select id="listEmployees" resultMap="employeeResult">
-        select  empCode, empName, empTitle, empAuth, empSalary, empTel, empId, empPwd, d.deptName, d.deptNo
-		from employee e
-		left join department d on e.deptNo = d.deptNo
-		order by empCode
-    </select>
 <!-- 쿼리문 작성 후-->
     <resultMap id="employeeResult" type="com.yi.spring.vo.EmployeeVO">
         <id property="empCode" column="empCode"/>
@@ -27,6 +20,13 @@
             <result property="deptName" column="deptName"/>
         </association>
     </resultMap>
+
+    <select id="listEmployees" resultMap="employeeResult">
+        select  empCode, empName, empTitle, empAuth, empSalary, empTel, empId, empPwd, d.deptName, d.deptNo
+        from employee e
+                 left join department d on e.deptNo = d.deptNo
+        order by empCode
+    </select>
 
     <insert id="empAdd" parameterType="com.yi.spring.vo.EmployeeVO">
         insert into employee(empCode, empName, empTitle, empAuth, empSalary, empTel, empId, empPwd, deptNo, empRetire)

@@ -24,23 +24,24 @@ public class EmployeeServiceImpl implements EmployeeService{
         List<EmployeeVO> employeeList = employeeMapper.listEmployees();
 
         return employeeList;
+
     }
 
     @Override
     public void empAdd(EmployeeVO vo) throws Exception {
-        System.out.println("123123123-> " + vo);
+        System.out.println("등록 데이터 전송 -> " + vo);
         employeeMapper.empAdd(vo);
     }
 
     @Override
     public void empUpd(EmployeeVO vo) throws Exception{
-        System.out.println("수정->" + vo);
+        System.out.println("수정 데이터 전송 ->" + vo);
         employeeMapper.empUpd(vo);
     }
 
     @Override
     public void empDel(EmployeeVO vo) throws Exception{
-        System.out.println("삭제->" + vo);
+        System.out.println("삭제 데이터 전송 ->" + vo);
         employeeMapper.empDel(vo);
     }
 

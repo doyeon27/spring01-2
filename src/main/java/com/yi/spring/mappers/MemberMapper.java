@@ -14,5 +14,4 @@ public interface MemberMapper {
     public void userAdd(@Param("vo") MemberVO vo);
     public void userDel(@Param("vo") MemberVO vo);
     public void userUpd(@Param("vo") MemberVO vo);
-
 }
